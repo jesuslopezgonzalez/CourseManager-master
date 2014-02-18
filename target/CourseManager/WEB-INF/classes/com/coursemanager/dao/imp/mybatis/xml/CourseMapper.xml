@@ -1,0 +1,32 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.coursemanager.dao.CourseMapper">
+	<select id="findByPk" resultType="com.coursemanager.model.Course" parameterType="long">
+		select * from course where pk_course=#{pk_course} where active=true
+	</select>
+	<select id="getAll" resultType="com.coursemanager.model.Course">
+		select * from course where active=true
+	</select>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="pk_course" parameterType="com.coursemanager.model.Course">
+		insert into course
+		(fk_teacher,title,active,level,hours)
+		values
+		(#{fk_teacher},#{title},#{active},#{level},#{hours})
+	</insert>
+	<update id="update" parameterType="com.coursemanager.model.Course">
+		update course set
+		fk_teacher = #{fk_teacher}
+		,title = #{title}
+		,active = #{active}
+		,level = #{level}
+		,hours = #{hours}
+		where pk_course = #{pk_course}
+	</update>
+	<delete id="remove" parameterType="com.coursemanager.model.Course">
+		delete from course where pk_course = #{pkCourse}
+    </delete>
+    <select id="getPaginated" parameterType="map" resultType="com.coursemanager.model.Course">
+    	select * from course where active=true limit #{maxResult} offset #{startPosition}
+    </select>
+</mapper>

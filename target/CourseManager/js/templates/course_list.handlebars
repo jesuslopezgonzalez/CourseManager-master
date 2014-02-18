@@ -1,0 +1,39 @@
+<h3>{{view.Title}}</h3>
+<div id="wrapper1">	
+	<div id="wrapper2">	
+		<div id="maincol">
+  			<div id="leftcol"></div>
+			<div id="rightcol"></div>
+			<div id="centercol">
+				<table border="1">
+					<tbody>
+						<tr>
+							<th style="width: 200px;">{{#view App.CourseListTitleOrderView}}Título{{/view}}</td>
+							<th style="width: 100px;">Nivel</td>
+							<th style="width: 75px;">Horas</td>
+						</tr>
+						{{#each}}
+						<tr>
+							<td>{{title}}</td>
+							<td>{{levelLabel}}</td>
+							<td>{{hours}}</td>
+						</tr>
+						{{/each}}
+					</tbody>
+					<tfooter>
+						<tr>
+							<td colspan="3" style="text-align: center;"> 
+							<button type="button" {{action prevPage target="App.applicationController"}}><</button>
+							<button type="button" {{action nextPage target="App.applicationController"}}>></button>
+							</td>
+						</tr>
+					</tfooter>
+				</table>
+				<br/>
+				{{#link-to 'createCourse'}}Nuevo Curso{{/link-to}}
+			</div>
+			{{outlet}}
+		</div>				
+		<div id="footer"></div>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<h3>{{view.Title}}</h3>
+<div id="wrapper1">	
+	<div id="wrapper2">	
+		<div id="maincol">
+  			<div id="leftcol"></div>
+			<div id="rightcol"></div>
+			
+			<div id="centercol">
+				<form>
+					<div><span>Activo:{{view Ember.Checkbox valueBinding="model.active" checked=true}}</span></div>
+					<div><span>Título:</span>{{view Ember.TextField valueBinding="model.title"}}</div>
+					<div><span>Profesor:</span>{{view  Ember.Select valueBinding="model.fk_teacher"
+																	contentBinding="App.TeachersController.teachers"
+																 	optionLabelPath="content.name"
+   																 	optionValuePath="content.pk_teacher"}}</div>
+					<div><span>Nivel:</span>{{view  Ember.Select valueBinding="model.level"
+																 contentBinding="App.LevelController"
+																 optionLabelPath="content.label"
+   																 optionValuePath="content.value"}}</div>
+					<div><span>Horas:</span>{{view Ember.TextField id="spinner" valueBinding="model.hours"}}</div>
+				</form>
+				<button type="button" id="submit" {{action "save" model}}>Guardar</button>
+				{{#link-to 'courseList'}}Volver{{/link-to}}
+			</div>
+			{{outlet}}
+		</div>				
+		<div id="footer"></div>
+	</div>
+</div>

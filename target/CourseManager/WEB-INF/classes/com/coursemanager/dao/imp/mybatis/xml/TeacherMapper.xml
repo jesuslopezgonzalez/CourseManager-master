@@ -1,0 +1,25 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.coursemanager.dao.TeacherMapper">
+	<select id="findByPK" resultType="com.coursemanager.model.Teacher" parameterType="long">
+		select * from teacher where pk_teacher=#{pk_teacher}
+	</select>
+	<select id="getAll" resultType="com.coursemanager.model.Teacher">
+		select * from teacher
+	</select>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="pk_teacher" parameterType="com.coursemanager.model.Teacher">
+		insert into teacher
+		(name)
+		values
+		(#{name})
+	</insert>
+	<update id="update" parameterType="com.coursemanager.model.Teacher">
+		update teacher set
+		name = #{name}
+		where pk_teacher = #{pk_teacher}
+	</update>
+	<delete id="remove" parameterType="com.coursemanager.model.Teacher">
+		delete from teacher where pk_teacher = #{pk_teacher}
+    </delete>
+</mapper>
